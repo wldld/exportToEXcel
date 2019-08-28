@@ -3,6 +3,7 @@
 import mysql.connector
 from PyQt5.QtWidgets import QMainWindow
 from mainWindow import *
+from functools import partial
 
 
 class MainWindowEdit(QMainWindow, Ui_MainWindow):
@@ -11,8 +12,16 @@ class MainWindowEdit(QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
         sql = self.text_Input.toPlainText()
-        self.btn_queary.clicked(queary)
-        # self.text_message_print.setText(result)
+        print(sql)
+        self.btn_queary.clicked.connect(self.print_message)
+
+    def testPrint(self):
+        print("get 到了")
+
+    def print_message(self):
+        heading, result = queary(self.sql)
+        message = "".join(result)
+        self.text_message_print.setText(message)
 
 
 def queary(sql):
@@ -41,3 +50,6 @@ if __name__ == '__main__':
     window = MainWindowEdit()
     window.show()
     sys.exit(app.exec_())
+    # sql = "select * from student"
+    # heading, result = queary(sql)
+    # print(result)
