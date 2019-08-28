@@ -23,11 +23,11 @@ def queary(sql):
     return heading, result
 
 
-def selectSql(sql):
+def readSql(sql):
     pass
 
 
 if __name__ == "__main__":
     sql = "select * from store"
     heading, result = queary(sql)
-    writerToExcel.writeExcel('G:\\temp\\store1.xlsx', heading, result)
+    writerToExcel.writeExcel('E:\\temp\\store1.xlsx', heading, result)
