@@ -1,35 +1,18 @@
 #!/bin/bash/python
 
-from PyQt5 import QtWidgets, QtCore
-import sys
-
-app = QtWidgets.QApplication(sys.argv)
-window = QtWidgets.QMainWindow()
+from PyQt5.QtWidgets import QMainWindow
+from mainWindow import *
 
 
-def title_changed(title):
-    window.windowTitleChanged.disconnect()
-    window.setWindowTitle("僚机-" + title)
-    window.windowTitleChanged.connect(title_changed)
+class MainWindowEdit(QMainWindow, Ui_MainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        Ui_MainWindow.setupUi(self)
 
 
-window.windowTitleChanged.connect(title_changed)
-window.setWindowTitle("Hello xy")
-window.resize(500, 400)
-window.move(500, 400)
-btn = QtWidgets.QPushButton(window)
-btn.setText("click")
-
-
-def btn_click():
-    if window.windowTitle() == "僚机-Hello xy":
-        window.setWindowTitle("Hello world")
-    else:
-        window.setWindowTitle("Hello xy")
-
-
-btn.move(50, 60)
-btn.clicked.connect(btn_click)
-window.show()
-
-sys.exit(app.exec_())
+if __name__ == '__main__':
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    window = MainWindowEdit()
+    window.show()
+    sys.exit(app.exec_())
