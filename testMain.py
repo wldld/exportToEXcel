@@ -18,14 +18,15 @@ class MainWindowEdit(QMainWindow, Ui_MainWindow):
         print("get 到了")
 
     def print_message(self):
+        self.text_message_print.setPlainText("")
         try:
             self.str_input = self.text_Input.toPlainText().strip()
             if self.str_input == '':
                 self.text_message_print.setPlainText("请输入sql")
             else:
                 result = queary_sql(self.str_input)
-                print(result)
-                self.text_message_print.setPlainText("queary OK")
+                self.text_message_print.setPlainText(str(result))
+                # self.text_message_print.setPlainText("queary OK")
         except mysql.connector.errors.InterfaceError:
             print("sql queary faild")
             self.text_message_print.setPlainText("sql queary faild")
@@ -60,10 +61,10 @@ def queary_sql(sql_str):
 if __name__ == '__main__':
     import sys
 
-    # app = QtWidgets.QApplication(sys.argv)
-    # window = MainWindowEdit()
-    # window.show()
-    # sys.exit(app.exec_())
+    app = QtWidgets.QApplication(sys.argv)
+    window = MainWindowEdit()
+    window.show()
+    sys.exit(app.exec_())
 
-    result = queary_sql("select * from user")
-    print(''.join(result))
+    # result = queary_sql("select * from user")
+    # print(str(result))
