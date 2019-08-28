@@ -24,14 +24,14 @@
     <property name="geometry">
      <rect>
       <x>-1</x>
-      <y>299</y>
+      <y>289</y>
       <width>641</width>
-      <height>151</height>
+      <height>161</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QTextEdit" name="message_print"/>
+      <widget class="QTextEdit" name="text_message_print"/>
      </item>
     </layout>
    </widget>
@@ -116,7 +116,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QTextEdit" name="sql_Input"/>
+      <widget class="QTextEdit" name="text_Input"/>
      </item>
     </layout>
    </widget>
