@@ -23,7 +23,7 @@ class MainWindowEdit(QMainWindow, Ui_MainWindow):
             if self.str_input == '':
                 self.text_message_print.setPlainText("请输入sql")
             else:
-                result = self.queary_sql(self.str_input)
+                result = queary_sql(self.str_input)
                 print(result)
                 self.text_message_print.setPlainText("queary OK")
         except mysql.connector.errors.InterfaceError:
@@ -37,30 +37,33 @@ class MainWindowEdit(QMainWindow, Ui_MainWindow):
             raise
 
 
-    def queary_sql(self, sql_str):
-        mydb = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            passwd="123456",
-            database="test"
-        )
-        mycursor = mydb.cursor()
-        mycursor.execute(sql_str)
-        result = mycursor.fetchall()
-        # headList = mycursor.description
-        # for index in range(len(headList)):
-        #     if index == 0:
-        #         heading = [headList[index][0], ]
-        #     else:
-        #         heading.append(headList[index][0])
-        # return heading, result
-        return result
+def queary_sql(sql_str):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        passwd="123456",
+        database="test"
+    )
+    mycursor = mydb.cursor()
+    mycursor.execute(sql_str)
+    result = mycursor.fetchall()
+    # headList = mycursor.description
+    # for index in range(len(headList)):
+    #     if index == 0:
+    #         heading = [headList[index][0], ]
+    #     else:
+    #         heading.append(headList[index][0])
+    # return heading, result
+    return result
 
 
 if __name__ == '__main__':
     import sys
 
-    app = QtWidgets.QApplication(sys.argv)
-    window = MainWindowEdit()
-    window.show()
-    sys.exit(app.exec_())
+    # app = QtWidgets.QApplication(sys.argv)
+    # window = MainWindowEdit()
+    # window.show()
+    # sys.exit(app.exec_())
+
+    result = queary_sql("select * from user")
+    print(''.join(result))
